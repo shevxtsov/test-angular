@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { Store } from '@ngrx/store'
+
+import { registerAction } from '../../store/actions/register.action'
 
 @Component({
     selector: 'mc-register',
@@ -7,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
     styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-    constructor(private fb: FormBuilder) {}
+    constructor(private fb: FormBuilder, private store: Store) {}
 
     form: FormGroup
 
@@ -25,6 +28,7 @@ export class RegisterComponent implements OnInit {
     }
 
     onSubmit(): void {
-        console.log(this.form.value);
+        console.log(this.form.value)
+        this.store.dispatch(registerAction(this.form.value))
     }
 }
