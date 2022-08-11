@@ -1,4 +1,4 @@
-export interface CurrentUserI {
+export interface ICurrentUser {
     id: number,
     email: string,
     username: string,
