@@ -7,21 +7,21 @@ import { catchError, map, of, switchMap, tap } from 'rxjs'
 import { PersistanceService } from 'src/app/shared/services/persistance.service'
 import { ICurrentUser } from 'src/app/shared/types/currentUser.interface'
 import { AuthService } from '../../services/auth.service'
-import { registerAC, registerFailureAC, registerSuccessAC } from '../actions/register.action'
+import { loginAC, loginFailureAC, loginSuccessAC } from '../actions/login.action'
 
 @Injectable()
-export class RegisterEffect {
-    register$ = createEffect(() => this.actions$.pipe(
-        ofType(registerAC),
+export class LoginEffect {
+    login$ = createEffect(() => this.actions$.pipe(
+        ofType(loginAC),
         switchMap(({ request }) => {
-            return this.authService.register(request).pipe(
+            return this.authService.login(request).pipe(
                 map((currentUser: ICurrentUser) => {
                     this.persistanseService.set('accessToken', currentUser.token)
 
-                    return registerSuccessAC({ currentUser })
+                    return loginSuccessAC({ currentUser })
                 }),
                 catchError((errorResponse: HttpErrorResponse) => {
-                    return of(registerFailureAC({ errors: errorResponse.error.errors }))
+                    return of(loginFailureAC({ errors: errorResponse.error.errors }))
                 })
             )
         })
@@ -29,7 +29,7 @@ export class RegisterEffect {
 
     redirectAfterSubmit$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(registerSuccessAC),
+            ofType(loginSuccessAC),
             tap(() => {
                 this.router.navigateByUrl('/')
             })
