@@ -1,7 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input, OnDestroy, OnInit } from '@angular/core'
+import { ActivatedRoute, Params, Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
-import { Observable } from 'rxjs'
+import { parseUrl, stringify } from 'query-string'
+import { Observable, Subscription } from 'rxjs'
 
+import { environment } from 'src/environments/environment'
 import { getFeedAC } from '../store/actions/getFeed.action'
 import { errorSelector, feedSelector, isLoadingSelector } from '../store/selectors'
 import { IFeedResponse } from '../types/feedResponse.interface'
@@ -11,27 +14,58 @@ import { IFeedResponse } from '../types/feedResponse.interface'
     templateUrl: './feed.component.html',
     styleUrls: ['./feed.component.scss']
 })
-export class FeedComponent implements OnInit {
+export class FeedComponent implements OnInit, OnDestroy {
     @Input('apiUrl') apiUrlProps: string
 
     isLoading$: Observable<boolean>
     error$: Observable<string | null>
     feed$: Observable<IFeedResponse>
+    limit: number = environment.limit
+    baseUrl: string
+    queryParamsSubscription: Subscription
+    currentPage: number
 
-    constructor(private store: Store) {}
+    constructor(
+        private store: Store,
+        private router: Router,
+        private route: ActivatedRoute
+    ) {}
 
     ngOnInit(): void {
         this.initializeValues()
-        this.fetchData()
+        this.initializaListeners()
+    }
+
+    ngOnDestroy(): void {
+        this.queryParamsSubscription.unsubscribe()
     }
 
     initializeValues(): void {
         this.isLoading$ = this.store.pipe(select(isLoadingSelector))
         this.error$ = this.store.pipe(select(errorSelector))
         this.feed$ = this.store.pipe(select(feedSelector))
+        this.baseUrl = this.router.url.split('?')[0]
     }
     
-    fetchData(): void {
-        this.store.dispatch(getFeedAC({ url: this.apiUrlProps}))
+    initializaListeners(): void {
+        this.queryParamsSubscription = this.route.queryParams.subscribe(
+            (params: Params) => {
+                this.currentPage = Number(params['page'] || '1')
+                this.fetchFeed()
+            }
+        )
+    }
+    
+    fetchFeed(): void {
+        const offset = this.currentPage * this.limit - this.limit
+        const parsedUrl = parseUrl(this.apiUrlProps)
+        const stringifiedParams = stringify({
+            limit: this.limit,
+            offset,
+            ...parsedUrl.query
+        })
+        const apiUrlWithParams = `${parsedUrl.url}?${stringifiedParams}`
+
+        this.store.dispatch(getFeedAC({ url: apiUrlWithParams}))
     }
 }

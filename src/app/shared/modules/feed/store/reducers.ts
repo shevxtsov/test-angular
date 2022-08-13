@@ -15,7 +15,8 @@ const feedReducer = createReducer(
         getFeedAC,
         (state): IFeedState => ({
             ...state,
-            isLoading: true
+            isLoading: true,
+            data: null
         })
     ),
     on(
