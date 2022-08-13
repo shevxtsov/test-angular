@@ -16,7 +16,8 @@ const feedReducer = createReducer(
         (state): IFeedState => ({
             ...state,
             isLoading: true,
-            data: null
+            data: null,
+            error: null
         })
     ),
     on(
@@ -31,7 +32,8 @@ const feedReducer = createReducer(
         getFeedFailureAC,
         (state): IFeedState => ({
             ...state,
-            isLoading: false
+            isLoading: false,
+            error: 'SERVER ERROR'
         })
     )
 )

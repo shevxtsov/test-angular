@@ -13,6 +13,8 @@ import { GlobalFeedModule } from './globalFeed/globalFeed.module'
 import { TopBarModule } from './shared/modules/topBar/topBar.module'
 import { AuthInterceptor } from './shared/services/authinterceptor.service'
 import { PersistanceService } from './shared/services/persistance.service'
+import { TagFeedModule } from './tagFeed/tagFeed.module'
+import { YourFeedModule } from './yourFeed/yourFeed.module'
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { PersistanceService } from './shared/services/persistance.service'
       maxAge: 25,
       logOnly: environment.production
     }),
-    GlobalFeedModule
+    GlobalFeedModule,
+    YourFeedModule,
+    TagFeedModule
   ],
   providers: [
     PersistanceService,

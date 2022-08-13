@@ -15,6 +15,7 @@
                 [routerLink]="['/']"
                 class="nav-link"
                 routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}"
             >
                 Global Feed
             </a>
@@ -26,7 +27,8 @@
                 class="nav-link"
                 routerLinkActive="active"
             >
-                # {{ tagNameProps }}
+                <i class="ion-pound"></i>
+                {{ tagNameProps }}
             </a>
         </li>
     </ul>

@@ -2,6 +2,7 @@
 <mc-error-message *ngIf="error$ | async"></mc-error-message>
 
 <div *ngIf="feed$ | async">
+    <p *ngIf="(feed$ | async).articlesCount === 0">No articles yet</p>
     <div class="article-preview" *ngFor="let article of (feed$ | async).articles">
         <div class="article-meta">
             <a [routerLink]="['/profiles', article.author.username]">
