@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { AuthModule } from './auth/auth.module'
+import { GlobalFeedModule } from './globalFeed/globalFeed.module'
 import { TopBarModule } from './shared/modules/topBar/topBar.module'
 import { AuthInterceptor } from './shared/services/authinterceptor.service'
 import { PersistanceService } from './shared/services/persistance.service'
@@ -28,7 +29,8 @@ import { PersistanceService } from './shared/services/persistance.service'
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production
-    })
+    }),
+    GlobalFeedModule
   ],
   providers: [
     PersistanceService,

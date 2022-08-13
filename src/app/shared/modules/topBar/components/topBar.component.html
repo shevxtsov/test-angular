@@ -6,7 +6,7 @@
         <ul class="nav navbar-nav pull-xs-right">
             <li class="nav-item"  *ngIf="isLoading$ | async">
                 <a  class="nav-link">
-                    Loading...
+                    <mc-loading></mc-loading>
                 </a>
             </li>
             <li class="nav-item"  *ngIf="!(isLoading$ | async)">
