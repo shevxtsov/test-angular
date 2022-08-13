@@ -9,6 +9,7 @@ import { IAppState } from 'src/app/shared/types/appState.interface'
 import { IArticle } from 'src/app/shared/types/article.interface'
 import { getArticleAC } from '../store/actions/getArticle.action'
 import { articleSelector, errorSelector, isLoadingSelector } from '../store/selectors'
+import { deleteArticleAC } from '../store/actions/deleteArticle.action'
 
 @Component({
     selector: 'mc-article',
@@ -70,5 +71,9 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
     fetchData(): void {
         this.store.dispatch(getArticleAC({ slug: this.slug }))
+    }
+
+    deleteArticle(): void {
+        this.store.dispatch(deleteArticleAC({ slug: this.slug }))
     }
 }
