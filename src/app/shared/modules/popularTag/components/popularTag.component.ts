@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { select, Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
 
+import { IAppState } from 'src/app/shared/types/appState.interface'
 import { TPopularTag } from 'src/app/shared/types/popularTag.type'
 import { getPopularTagsAC } from '../store/actions/getPopularTag.action'
 import { errorSelector, isLoadingSelector, popularTagSelector } from '../store/selectors'
@@ -16,7 +17,7 @@ export class PopularTagComponent implements OnInit {
     isLoading$: Observable<boolean>
     error$: Observable<string | null>
 
-    constructor(private store: Store) {}
+    constructor(private store: Store<IAppState>) {}
 
     ngOnInit(): void {
         this.inititalizeValues()

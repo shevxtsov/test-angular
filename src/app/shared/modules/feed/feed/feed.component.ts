@@ -4,6 +4,7 @@ import { select, Store } from '@ngrx/store'
 import { parseUrl, stringify } from 'query-string'
 import { Observable, Subscription } from 'rxjs'
 
+import { IAppState } from 'src/app/shared/types/appState.interface'
 import { environment } from 'src/environments/environment'
 import { getFeedAC } from '../store/actions/getFeed.action'
 import { errorSelector, feedSelector, isLoadingSelector } from '../store/selectors'
@@ -26,7 +27,7 @@ export class FeedComponent implements OnInit, OnDestroy, OnChanges {
     currentPage: number
 
     constructor(
-        private store: Store,
+        private store: Store<IAppState>,
         private router: Router,
         private route: ActivatedRoute
     ) {}

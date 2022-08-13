@@ -3,6 +3,7 @@ import { select, Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
 
 import { isLoggedInSelector } from 'src/app/auth/store/selectors'
+import { IAppState } from 'src/app/shared/types/appState.interface'
 
 @Component({
     selector: 'mc-feed-toggler',
@@ -14,7 +15,7 @@ export class FeddTogglerComponent implements OnInit {
 
     isLoggedIn$: Observable<boolean>
 
-    constructor(private store: Store) {}
+    constructor(private store: Store<IAppState>) {}
 
     ngOnInit(): void {
         this.initializeValues()
