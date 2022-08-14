@@ -18,6 +18,7 @@ import { TopBarModule } from './shared/modules/topBar/topBar.module'
 import { AuthInterceptor } from './shared/services/authinterceptor.service'
 import { PersistanceService } from './shared/services/persistance.service'
 import { TagFeedModule } from './tagFeed/tagFeed.module'
+import { UserProfileModule } from './userProfile/userProfile.module'
 import { YourFeedModule } from './yourFeed/yourFeed.module'
 
 @NgModule({
@@ -42,7 +43,8 @@ import { YourFeedModule } from './yourFeed/yourFeed.module'
     CreateArticleModule,
     EditArticleModule,
     ArticleModule,
-    SettingsModule
+    SettingsModule,
+    UserProfileModule
   ],
   providers: [
     PersistanceService,
