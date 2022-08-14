@@ -4,6 +4,8 @@ import { IAuthState } from '../types/authState.interface'
 import { getCurrentUserAC, getCurrentUserFailureAC, getCurrentUserSuccessAC } from './actions/getCurrentUser.action'
 import { loginAC, loginFailureAC, loginSuccessAC } from './actions/login.action'
 import { registerAC, registerFailureAC, registerSuccessAC } from './actions/register.action'
+import { logoutAC } from './actions/sync.action'
+import { updateCurrentUserSuccessAC } from './actions/updateCurrentUser.action'
 
 const initialState: IAuthState = {
     isSubmitting: false,
@@ -64,6 +66,14 @@ const authReducer = createReducer(
         validationErrors: null,
         isLoggedIn: false,
         currentUser: null
+    })),
+    on(updateCurrentUserSuccessAC, (state, action): IAuthState => ({
+        ...state,
+        currentUser: action.currentUser
+    })),
+    on(logoutAC, (): IAuthState => ({
+        ...initialState,
+        isLoggedIn: false
     }))
 )
 

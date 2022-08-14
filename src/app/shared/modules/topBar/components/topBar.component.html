@@ -10,20 +10,33 @@
                 </a>
             </li>
             <li class="nav-item"  *ngIf="!(isLoading$ | async)">
-                <a [routerLink]="['/']" class="nav-link">
+                <a
+                    [routerLink]="['/']"
+                    class="nav-link"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact: true}"
+                >
                     Home
                 </a>
             </li>
 
             <ng-container *ngIf="isLoggedIn$ | async">
                 <li class="nav-item">
-                    <a [routerLink]="['/articles/new']" class="nav-link">
+                    <a
+                        [routerLink]="['/articles/new']"
+                        class="nav-link"
+                        routerLinkActive="active"
+                    >
                         <i class="ion-compose"></i>
                         &nbsp; New Post
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a [routerLink]="['/settings']" class="nav-link">
+                    <a
+                        [routerLink]="['/settings']"
+                        class="nav-link"
+                        routerLinkActive="active"
+                    >
                         <i class="ion-gear-a"></i>
                         &nbsp; Settings
                     </a>
@@ -38,12 +51,20 @@
     
             <ng-container *ngIf="isAnonymous$ | async">
                 <li class="nav-item">
-                    <a [routerLink]="['/login']" class="nav-link">
+                    <a
+                        [routerLink]="['/login']"
+                        class="nav-link"
+                        routerLinkActive="active"
+                    >
                         Sign In
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a [routerLink]="['/register']" class="nav-link">
+                    <a
+                        [routerLink]="['/register']"
+                        class="nav-link"
+                        routerLinkActive="active"
+                    >
                         Sign Up
                     </a>
                 </li>

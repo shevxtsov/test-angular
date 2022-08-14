@@ -7,6 +7,7 @@ import { IRegisterRequest } from '../types/registerRequest.interface'
 import { environment } from 'src/environments/environment'
 import { IAuthResponse } from '../types/authResponse.interface'
 import { ILoginRequest } from '../types/loginRequest.interface'
+import { ICurrentUserRequest } from 'src/app/shared/types/currentUserRequest.interface'
 
 @Injectable()
 export class AuthService {
@@ -38,5 +39,11 @@ export class AuthService {
         return this.http
             .get(url)
             .pipe(map(this.getUser))
+    }
+
+    updateCurrentUser(currentUserRequest: ICurrentUserRequest): Observable<ICurrentUser> {
+        const url = environment.apiUrl + '/user'
+
+        return this.http.put(url, { user: currentUserRequest }).pipe(map(this.getUser))
     }
 }
