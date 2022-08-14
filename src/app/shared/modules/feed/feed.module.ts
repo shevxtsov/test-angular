@@ -5,6 +5,7 @@ import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
 
 import { ErrorMessageModule } from '../errorMessage/errorMessage.module'
+import { FavoritesModule } from '../favorites/favorites.module'
 import { LoadingModule } from '../loading/loading.module'
 import { PaginationModule } from '../pagination/pagination.module'
 import { TagListModule } from '../tagList/tagList.module'
@@ -22,7 +23,8 @@ import { reducers } from './store/reducers'
         ErrorMessageModule,
         LoadingModule,
         PaginationModule,
-        TagListModule
+        TagListModule,
+        FavoritesModule
     ],
     declarations: [FeedComponent],
     exports: [FeedComponent],
