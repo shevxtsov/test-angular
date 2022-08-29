@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { IEvent } from "src/app/shared/types/event.interface";
 
 @Component({
     selector: 'mc-button',
@@ -10,7 +11,7 @@ export class ButtonComponent implements OnInit {
     @Input('label') labelProps: string
     @Input('event') eventProps: string
 
-    @Output('onClick') onClickEvent = new EventEmitter()
+    @Output('onClick') onClickEvent = new EventEmitter<IEvent>()
 
     ngOnInit(): void {
         

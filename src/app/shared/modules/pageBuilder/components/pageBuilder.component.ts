@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { IEvent } from 'src/app/shared/types/event.interface'
 
 import { IMeta } from 'src/app/shared/types/meta.inteface'
 
@@ -10,9 +11,9 @@ import { IMeta } from 'src/app/shared/types/meta.inteface'
 export class PageBuilderComponent implements OnInit {
     @Input('meta') metaProps: IMeta
 
-    @Output('onInput') onInputEvent = new EventEmitter()
-    @Output('onClick') onClickEvent = new EventEmitter()
-    @Output('onChange') onChangeEvent = new EventEmitter()
+    @Output('onInput') onInputEvent = new EventEmitter<IEvent>()
+    @Output('onClick') onClickEvent = new EventEmitter<IEvent>()
+    @Output('onChange') onChangeEvent = new EventEmitter<IEvent>()
 
     constructor() {}
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core'
+
+import { IEvent } from 'src/app/shared/types/event.interface'
 import { IMeta } from 'src/app/shared/types/meta.inteface'
 import { testMeta } from 'src/assets/metadata/test.meta'
 
@@ -12,18 +14,17 @@ export class MetaPageComponent implements OnInit {
 
     constructor() {}
 
-    ngOnInit(): void {
-    }
+    ngOnInit(): void {}
 
-    onInput($event: any) {
+    onInput($event: IEvent) {
         console.log($event)
     }
 
-    onClick($event: any) {
+    onClick($event: IEvent) {
         console.log($event)
     }
 
-    onChange($event: any) {
+    onChange($event: IEvent) {
         console.log($event)
     }
 }
