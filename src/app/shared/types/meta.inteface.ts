@@ -1,4 +1,4 @@
-export interface Item {
+export interface IItem {
     i: string
     lbl: string
     tag: string
@@ -12,7 +12,7 @@ export interface Item {
     list?: string[]
 }
 
-export interface Group {
+export interface IGroup {
     i: string
     lbl: string
     col: string
@@ -20,19 +20,19 @@ export interface Group {
     typ: string
     ci: string
     ro: string
-    items: Item[]
+    items: IItem[]
 }
 
-export interface Row {
+export interface IRow {
     i: string
     vis: string
     fold: string
     lbl: string
     modal: string
-    gs: Group[]
+    gs: IGroup[]
 }
 
-export interface Action {
+export interface IAction {
     evt: string
     dis: string
     vis: string
@@ -46,6 +46,6 @@ export interface IMeta {
     i: string
     lbl: string
     modal: string
-    rows: Row[]
-    actions: Action[]
+    rows: IRow[]
+    actions: IAction[]
 }
