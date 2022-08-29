@@ -1,0 +1,10 @@
+<fieldset>
+    <label>{{ labelProps }}</label>
+    <select
+        (change)="onChange($event)"
+    >
+        <option *ngFor="let item of itemsProps">
+            {{ item }}
+        </option>
+    </select>
+</fieldset>

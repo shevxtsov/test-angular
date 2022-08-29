@@ -1,0 +1,61 @@
+<div class="container" *ngIf="metaProps">
+    <div class="row">
+        <div class="col xs-12">
+            <h1>{{ metaProps.lbl }}</h1>
+        </div>
+    </div>
+    <div class="row" *ngFor="let row of metaProps.rows">
+        <div class="col-lg-{{ group.col }}" *ngFor="let group of row.gs">
+            <ng-container [ngSwitch]="group.typ">
+                <div class="table" *ngSwitchCase="'t'">
+                    <h2>Table</h2>
+                    <ng-container *ngFor="let item of group.items">
+                        <ng-container [ngSwitch]="item.tag">
+                            <mc-input
+                                *ngSwitchCase="'input'"
+                                [id]="item.i"
+                                [label]="item.lbl"
+                                (onInput)="this.onInputEvent.emit($event)"
+                            ></mc-input>
+                        </ng-container>
+                    </ng-container>
+                </div>
+                <div class="info" *ngSwitchCase="'f'">
+                    <h2>Info</h2>
+                    <ng-container *ngFor="let item of group.items">
+                        <ng-container [ngSwitch]="item.tag">
+                            <mc-input
+                                *ngSwitchCase="'input'"
+                                [id]="item.i"
+                                [label]="item.lbl"
+                                (onInput)="this.onInputEvent.emit($event)"
+                            ></mc-input>
+                            <mc-button
+                                *ngSwitchCase="'button'"
+                                [id]="item.i"
+                                [label]="item.lbl"
+                                [event]="item.evt"
+                                (onClick)="this.onClickEvent.emit($event)"
+                            ></mc-button>
+                            <mc-select
+                                *ngSwitchCase="'select'"
+                                [id]="item.i"
+                                [label]="item.lbl"
+                                [items]="item.list"
+                                (onChange)="this.onChangeEvent.emit($event)"
+                            ></mc-select>
+                            <span
+                                *ngSwitchDefault
+                            >
+                                Неизвестный элемент
+                            </span>
+                        </ng-container>
+                    </ng-container>
+                </div>
+                <div class="default" *ngSwitchDefault="">
+                    Default
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

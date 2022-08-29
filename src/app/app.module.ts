@@ -13,6 +13,7 @@ import { AuthModule } from './auth/auth.module'
 import { CreateArticleModule } from './createArticle/createArticle.module'
 import { EditArticleModule } from './editArticle/editArticle.module'
 import { GlobalFeedModule } from './globalFeed/globalFeed.module'
+import { MetaPageModule } from './metaPage/metaPage.module'
 import { SettingsModule } from './settingsModule/settings.module'
 import { TopBarModule } from './shared/modules/topBar/topBar.module'
 import { AuthInterceptor } from './shared/services/authinterceptor.service'
@@ -44,7 +45,8 @@ import { YourFeedModule } from './yourFeed/yourFeed.module'
     EditArticleModule,
     ArticleModule,
     SettingsModule,
-    UserProfileModule
+    UserProfileModule,
+    MetaPageModule,
   ],
   providers: [
     PersistanceService,

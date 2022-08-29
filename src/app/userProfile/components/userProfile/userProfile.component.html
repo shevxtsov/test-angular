@@ -13,6 +13,13 @@
                         FOLLOW USER BUTTON
                         <a
                             *ngIf="isCurrentUser$ | async"
+                            [routerLink]="['/test']"
+                            class="btn btn-sm btn-outline-secondary action-btn"
+                        >
+                            Meta page
+                        </a>
+                        <a
+                            *ngIf="isCurrentUser$ | async"
                             [routerLink]="['/settings']"
                             class="btn btn-sm btn-outline-secondary action-btn"
                         >
